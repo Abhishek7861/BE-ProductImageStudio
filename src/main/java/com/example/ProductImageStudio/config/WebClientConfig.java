@@ -8,6 +8,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 public class WebClientConfig {
+
+    @Value("${runpod.base-url}")
+    private String baseUrl;
+
     @Value("${runpod.api-key}")
     private String apiKey;
 
@@ -17,8 +21,9 @@ public class WebClientConfig {
     @Bean
     public WebClient webClient() {
         return WebClient.builder()
-                .baseUrl("https://api.runpod.ai/v2/" + endpointId)
+                .baseUrl(baseUrl + endpointId)
                 .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + apiKey)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, "application/json")
-                .build();    }
+                .build();
+    }
 }
