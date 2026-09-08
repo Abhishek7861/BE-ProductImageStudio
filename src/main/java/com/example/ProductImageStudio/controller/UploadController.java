@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/uploads")
-@CrossOrigin(origins = "http://localhost:5174")
 @RequiredArgsConstructor
 public class UploadController {
 

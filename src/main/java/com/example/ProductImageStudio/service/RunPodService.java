@@ -15,6 +15,7 @@ import java.util.Map;
 public class RunPodService {
 
     private final WebClient webClient;
+    private final UserService userService;
 
     public RunPodResponse generateImage(RunPodRequest request) {
 
