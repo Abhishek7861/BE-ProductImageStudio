@@ -6,20 +6,22 @@ import com.example.ProductImageStudio.dto.RunPodResponse;
 import com.example.ProductImageStudio.entity.RunPodOutput;
 import com.example.ProductImageStudio.entity.RunPodStatusResponse;
 import com.example.ProductImageStudio.service.RunPodService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1")
-@AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:5174")
+@RequiredArgsConstructor
 public class RunPodTestController {
 
     private final RunPodService runPodService;
 
     @PostMapping("/generate")
-    public RunPodResponse testGenerate(@RequestBody RunPodRequest runPodInput) {
-        return runPodService.generateImage(runPodInput);
+    public RunPodResponse testGenerate(@AuthenticationPrincipal OAuth2User oauthUser,
+                                       @RequestBody RunPodRequest runPodInput) {
+        return runPodService.generateImage(oauthUser, runPodInput);
     }
 
     @GetMapping("/status/{jobId}")
@@ -36,4 +38,6 @@ public class RunPodTestController {
         }
         return resp;
     }
+
+
 }
