@@ -29,7 +29,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
                         // Public: root, error page, and everything Spring Security's OAuth flow needs
-                        .requestMatchers("/", "/error", "/oauth2/**", "/login/**").permitAll()
+                        .requestMatchers("/", "/error", "/oauth2/**", "/login/**", "/swagger-ui/**").permitAll()
                         // Everything else — including /api/v1/auth/me — requires a session
                         .anyRequest().authenticated()
                 )
