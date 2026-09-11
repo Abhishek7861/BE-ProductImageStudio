@@ -35,3 +35,7 @@ build/
 #.mvn
 #mvnw
 #mvnw.cmd
+
+DEPLOY.md
+env.yaml
+application-local.properties
